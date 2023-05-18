@@ -37,6 +37,10 @@ func yiiDecode(c *Cookie) bool {
 	var parsedData yiiParsedData
 
 	tempData := strings.Split(rawCookie, ":")[0]
+	
+	if len(tempData) < 2 {
+	    	return false
+	}
 
 	parsedData.signature = tempData[:len(tempData)-1]
 	parsedData.data = rawCookie[len(parsedData.signature):]
